@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EthClaims - Insurance Claims Checker</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="./app.js"></script>
+</head>
+<body>
+  <h1>EthClaims</h1>
+  <h2>Insurance Duplicate Claims Checker</h2>
+
+  <h3>With EthClaims an insurance company can easily and securely check if a car already have a claim reported in other company.</h3>
+  <h3>In EthClaims we care about your clients privacy, nobody will know the data of your customer car or claim, not even US! <a class="howitworks-link" href="#">Check here why!</a></h3>
+
+  <div>
+    <button id="btn-check-claim">Check Claim</button>
+    <button id="btn-create-claim">Report Claim</button>
+  </div>
+
+  <div class="my-address">
+    Your address is: <span id="my-address"></span>
+  </div>
+
+  <div id="dialog-fingerprint" title="How it works">
+    <p>How we track the information? we never receive any data of your claim and/or your customer car. See the following image for an explanation</p>
+    <img src="./ethclaims_fingerprint.png" style="width: 700px;" />
+  </div>
+
+  <div id="dialog-query" title="Check Claim">
+    <p>Here you're able to check if a car already reported a claim.</p>
+    <div class="form-row">
+      Claim (Month-Day-Year):
+      <select id="claim-month">
+        <option value=""></option>
+        <option value="01">1</option>
+        <option value="02">2</option>
+        <option value="03">3</option>
+        <option value="04">4</option>
+        <option value="05">5</option>
+        <option value="06">6</option>
+        <option value="07">7</option>
+        <option value="08">8</option>
+        <option value="09">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select> -
+      <select id="claim-day">
+        <option value=""></option>
+        <option value="01">1</option>
+        <option value="02">2</option>
+        <option value="03">3</option>
+        <option value="04">4</option>
+        <option value="05">5</option>
+        <option value="06">6</option>
+        <option value="07">7</option>
+        <option value="08">8</option>
+        <option value="09">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+      </select>
+       - <input type="text" id="claim-year" />
+    </div>
+    <div class="form-row">
+      Car Brand:
+      <select id="car-brand">
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="form-row">
+      Car Model:
+      <select id="car-model">
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="form-row">
+      Car Year: <input type="text" id="car-year" />
+    </div>
+    <div class="form-row">
+      Car Engine Number: <input type="text" id="car-engine-number" />
+    </div>
+  </div>
+
+  <div id="dialog-report" title="Report Claim">
+    <p>Report a new claim.</p>
+    <div class="form-row">
+      Claim (Month-Day-Year):
+      <select id="create-claim-month">
+        <option value=""></option>
+        <option value="01">1</option>
+        <option value="02">2</option>
+        <option value="03">3</option>
+        <option value="04">4</option>
+        <option value="05">5</option>
+        <option value="06">6</option>
+        <option value="07">7</option>
+        <option value="08">8</option>
+        <option value="09">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select> -
+      <select id="create-claim-day">
+        <option value=""></option>
+        <option value="01">1</option>
+        <option value="02">2</option>
+        <option value="03">3</option>
+        <option value="04">4</option>
+        <option value="05">5</option>
+        <option value="06">6</option>
+        <option value="07">7</option>
+        <option value="08">8</option>
+        <option value="09">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+      </select>
+       - <input type="text" id="create-claim-year" />
+    </div>
+    <div class="form-row">
+      Car Brand:
+      <select id="create-car-brand">
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="form-row">
+      Car Model:
+      <select id="create-car-model">
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="form-row">
+      Car Year: <input type="text" id="create-car-year" />
+    </div>
+    <div class="form-row">
+      Car Engine Number: <input type="text" id="create-car-engine-number" />
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://bitwiseshiftleft.github.io/sjcl/sjcl.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
+
+  <script>
+  $( function() {
+    var queryDialog = $( "#dialog-query" ).dialog({
+      autoOpen: false,
+      height: 500,
+      width: 700,
+      modal: true,
+      buttons: [
+        {text: "Search",
+         click: function() {
+           var claimMonth = $("#claim-month").val();
+           var claimDay = $("#claim-day").val();
+           var claimYear = $("#claim-year").val();
+           var carBrand = $("#car-brand").val();
+           var carModel = $("#car-model").val();
+           var carYear = $("#car-year").val();
+           var carEngineNumber = $("#car-engine-number").val();
+
+           if(("" != claimMonth) && ("" != claimDay) && ("" != claimYear) && ("" != carBrand) && ("" != carModel) && ("" != carYear) && ("" != carEngineNumber)) {
+             var textToCalculate = App.calculateFingerprintText(claimMonth, claimDay, claimYear, carBrand, carModel, carYear, carEngineNumber);
+             console.log(textToCalculate);
+             var hash = CryptoJS.SHA256(textToCalculate);
+             console.log("claim hash: " + hash);
+             App.checkClaim(hash, $(this));
+           } else {
+             alert("You must complete all the fields in the form");
+           }
+         }}
+      ],
+      close: function() {
+      }
+    });
+
+    var reportDialog = $( "#dialog-report" ).dialog({
+      autoOpen: false,
+      height: 500,
+      width: 700,
+      modal: true,
+      buttons: [
+        {text: "Report Claim",
+         click: function() {
+           var claimMonth = $("#create-claim-month").val();
+           var claimDay = $("#create-claim-day").val();
+           var claimYear = $("#create-claim-year").val();
+           var carBrand = $("#create-car-brand").val();
+           var carModel = $("#create-car-model").val();
+           var carYear = $("#create-car-year").val();
+           var carEngineNumber = $("#create-car-engine-number").val();
+
+           if(("" != claimMonth) && ("" != claimDay) && ("" != claimYear) && ("" != carBrand) && ("" != carModel) && ("" != carYear) && ("" != carEngineNumber)) {
+             var textToCalculate = App.calculateFingerprintText(claimMonth, claimDay, claimYear, carBrand, carModel, carYear, carEngineNumber);
+             console.log(textToCalculate);
+             var hash = CryptoJS.SHA256(textToCalculate);
+             console.log("claim hash: " + hash);
+             App.registerClaim(hash, $(this));
+           } else {
+             alert("You must complete all the fields in the form");
+           }
+         }
+       }
+      ],
+      close: function() {
+      }
+    });
+
+    var howItWorks = $("#dialog-fingerprint").dialog({
+      autoOpen: false,
+      height: 600,
+      width: 750,
+      modal: true,
+      close: function() {
+      }
+    });
+
+    $( ".howitworks-link" ).on( "click", function() {
+      howItWorks.dialog( "open" );
+    });
+
+    $( "#btn-check-claim" ).button().on( "click", function() {
+      queryDialog.dialog( "open" );
+    });
+
+    $( "#btn-create-claim" ).button().on( "click", function() {
+      reportDialog.dialog( "open" );
+    });
+
+    App.populateBrandDropdown($('#car-brand'));
+    App.populateBrandDropdown($('#create-car-brand'));
+
+    $('#car-brand').change(function() {
+      var carModel = $("#car-model");
+      var selectedBrand = $("#car-brand").val();
+      App.populateModelDropDown(carModel, selectedBrand);
+    });
+
+    $('#create-car-brand').change(function() {
+      var carModel = $("#create-car-model");
+      var selectedBrand = $("#create-car-brand").val();
+      App.populateModelDropDown(carModel, selectedBrand);
+    });
+  } );
+  </script>
+</body>
+</html>
